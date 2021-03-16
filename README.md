@@ -1,7 +1,7 @@
 # Deploy Tanzu Build Service on vSphere 7 with Tanzu
 
 ```shell
-kbld relocate -f /tmp/images.lock --lock-output /tmp/images-relocated.lock --repository 192.168.10.164/demo1/build-service --registry-ca-cert-path /tmp/harbor.crt
+$ kbld relocate -f /tmp/images.lock --lock-output /tmp/images-relocated.lock --repository 192.168.10.164/demo1/build-service --registry-ca-cert-path /tmp/harbor.crt
 ```
 
 ```shell
