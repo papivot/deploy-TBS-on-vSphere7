@@ -37,11 +37,15 @@ $ kp import -f /tmp/descriptor-100.0.69.yaml --registry-ca-cert-path /tmp/harbor
 ```
 ---
 
-## Build an application
+## Build an application 
+
+Example of building a OCI image using TBS for an appplciation on https://github.com/$GH_USERNAME/spring-petclinic
 
 ```cmd
-$ export GH_USERNAME=papivot
+$ export GH_USERNAME=your-git-repository
 $ kp secret create my-git-cred --git-user $GH_USERNAME --git-url https://github.com
 $ kp secret create my-registry-cred --registry 192.168.10.164/demo1 --registry-user administrator@vsphere.local
 $ kp image  create spring-petclinic --tag 192.168.10.164/demo1/spring-petclinic --git https://github.com/$GH_USERNAME/spring-petclinic.git --git-revision main
+$ kp image trigger spring-petclinic
+$ kp build list
 ```
