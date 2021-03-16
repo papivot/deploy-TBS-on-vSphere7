@@ -1,5 +1,6 @@
 # Deploy Tanzu Build Service on vSphere 7 with Tanzu
 
+## Install
 1. Harbor is enabled on the Supervisor cluster (NSX networking).
 2. For this example, Harbor is running on `https://192.168.10.164`. 
 3. A guest cluster has been deployed using the yaml provided in this repo. This is important as there are additional storage that needs to be carved out on the worker nodes. 
@@ -23,8 +24,24 @@ $ kbld relocate -f /tmp/images.lock --lock-output /tmp/images-relocated.lock --r
 ```shell
 $ ytt -f /tmp/values.yaml -f /tmp/manifests/ -f /tmp/harbor.crt -v docker_repository="192.168.10.164/demo1/build-service" -v docker_username="administrator@vsphere.local" -v docker_password='Password' | kbld -f /tmp/images-relocated.lock -f- | kapp deploy -a tanzu-build-service -f- -y
 ```
+This should complete the install of TBS.
+
+---
+
+## Install dependencies
+
 9. Follow the documentation - section `Import Tanzu Build Service Dependencies` while leveraging some of the examples provided here - 
 
 ```shell
 $ kp import -f /tmp/descriptor-100.0.69.yaml --registry-ca-cert-path /tmp/harbor.crt
+```
+---
+
+## Build an application
+
+```cmd
+$ export GH_USERNAME=papivot
+$ kp secret create my-git-cred --git-user $GH_USERNAME --git-url https://github.com
+$ kp secret create my-registry-cred --registry 192.168.10.164/demo1 --registry-user administrator@vsphere.local
+$ kp image  create spring-petclinic --tag 192.168.10.164/demo1/spring-petclinic --git https://github.com/$GH_USERNAME/spring-petclinic.git --git-revision main
 ```
