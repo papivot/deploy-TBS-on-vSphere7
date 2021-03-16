@@ -3,10 +3,10 @@
 ## Install
 1. Harbor is enabled on the Supervisor cluster (NSX networking).
 2. For this example, Harbor is running on `https://192.168.10.164`. 
-3. A guest cluster has been deployed using the yaml provided in this repo. This is important as there are additional storage that needs to be carved out on the worker nodes. 
-4. For this example, the guest cluster is deployed in `demo1` namespace in the Supervisor cluster 
-5. Pod security policy has been relaxed in the guest cluster using the yaml provided in this repo. 
-6. Download the Harbor registry's SSL root cert (see image below) and move it the `/tmp/harbor.crt` folder of the workstation from which to run the setup - 
+3. A guest cluster has been deployed using the YAML provided in this repo. This is important as there are additional storage that needs to be carved out on the worker nodes. 
+4. For this example, the guest cluster is deployed in `demo1` namespace in the Supervisor cluster.
+5. Pod security policy has been relaxed in the guest cluster using the YAML provided in this repo. 
+6. Download the Harbor registry's SSL root cert (see image below) and move it to `/tmp/harbor.crt` on the workstation from which to run the setup - 
 
 ![alt text](https://github.com/papivot/deploy-TBS-on-vSphere7/blob/main/harbor.png?raw=true)
 
