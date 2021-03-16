@@ -7,10 +7,13 @@
 5. Pod security policy has been relaxed in the guest cluster using the yaml provided in this repo. 
 6. Download the Harbor registry's SSL root cert (see image below) and move it the `/tmp/harbor.crt` folder of the workstation from which to run the setup - 
 
-![alt text](https://github.com/papivot/deploy-TBS-on-vSphere7/blob/main/harbor.png?raw=true){:width="200px"}
+![alt text](https://github.com/papivot/deploy-TBS-on-vSphere7/blob/main/harbor.png?raw=true)
+
+7. Follow the documentation - section `Prerequisites`
+8. Follow the documentation - section `Installing` while leveraging some of the examples provided here - 
 
 ```shell
-docker login https://192.168.10.164
+$ docker login https://192.168.10.164
 ```
 
 ```shell
@@ -19,4 +22,9 @@ $ kbld relocate -f /tmp/images.lock --lock-output /tmp/images-relocated.lock --r
 
 ```shell
 $ ytt -f /tmp/values.yaml -f /tmp/manifests/ -f /tmp/harbor.crt -v docker_repository="192.168.10.164/demo1/build-service" -v docker_username="administrator@vsphere.local" -v docker_password='Password' | kbld -f /tmp/images-relocated.lock -f- | kapp deploy -a tanzu-build-service -f- -y
+```
+9. Follow the documentation - section `Import Tanzu Build Service Dependencies` while leveraging some of the examples provided here - 
+
+```shell
+$ kp import -f /tmp/descriptor-100.0.69.yaml --registry-ca-cert-path /tmp/harbor.crt
 ```
