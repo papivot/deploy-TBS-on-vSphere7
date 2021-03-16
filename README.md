@@ -1,1 +1,1 @@
-# deploy-TBS-on-vSphere7
+# Deploy Tanzu Build Service on vSphere 7 with Tanzu
