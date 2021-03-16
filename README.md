@@ -6,6 +6,8 @@
 4. For this example, the guest cluster is deployed in `demo1` namespace in the Supervisor cluster 
 5. Pod security policy has been relaxed in the guest cluster using the yaml provided in this repo. 
 
+![alt text](https://github.com/papivot/deploy-TBS-on-vSphere7/blob/main/harbor.png?raw=true)
+
 ```shell
 docker login https://192.168.10.164
 ```
